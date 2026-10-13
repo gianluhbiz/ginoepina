@@ -1,0 +1,163 @@
+import type { L } from '../types'
+
+const l = (it: string, en: string): L => ({ it, en })
+
+/** Testi dell'interfaccia. I contenuti (menu, FAQ, sale) stanno in src/data. */
+export const strings = {
+  skip: l('Vai al contenuto', 'Skip to content'),
+  nav: {
+    menu: l('Menu', 'Menu'),
+    locale: l('Il locale', 'About us'),
+    gruppi: l('Gruppi ed eventi', 'Groups & events'),
+    dove: l('Orari e dove siamo', 'Hours & location'),
+    faq: l('Domande', 'FAQ'),
+    book: l('Prenota', 'Book'),
+    openMenu: l('Apri il menu di navigazione', 'Open navigation'),
+    closeMenu: l('Chiudi il menu di navigazione', 'Close navigation'),
+    home: l('Torna alla home', 'Back to home'),
+  },
+  actions: {
+    call: l('Chiama', 'Call'),
+    whatsapp: l('WhatsApp', 'WhatsApp'),
+    menu: l('Menu', 'Menu'),
+    map: l('Mappa', 'Map'),
+    directions: l('Indicazioni stradali', 'Get directions'),
+    bookOnline: l('Prenota online', 'Book online'),
+    seeMenu: l('Vedi il menu completo', 'See the full menu'),
+    askQuote: l('Chiedi un preventivo su WhatsApp', 'Ask for a quote on WhatsApp'),
+  },
+  status: {
+    openUntil: l('Aperto ora · chiude alle', 'Open now · closes at'),
+    closedOpensAt: l('Chiuso ora · apre alle', 'Closed now · opens at'),
+    closedTomorrow: l('Chiuso ora · riapre domani alle', 'Closed now · opens tomorrow at'),
+  },
+  hero: {
+    since: l('Benevento, dal 1940', 'Benevento, since 1940'),
+    title: l('Cucina tipica beneventana', 'Traditional Benevento cooking'),
+    titleSince: l('dal 1940', 'since 1940'),
+    lead: l(
+      'Ristorante, pizzeria ed enoteca della famiglia Palmieri, alla terza generazione. Piatti sanniti di terra e di mare, la sera pizza nel forno a legna. A 200 metri dal Teatro Romano, con parcheggio.',
+      'Restaurant, pizzeria and wine shop run by the third generation of the Palmieri family. Local dishes from land and sea, wood-fired pizza in the evening. 200 metres from the Roman Theatre, with parking.',
+    ),
+    photoCaption: l('Fettuccine ai funghi porcini e pecorino', 'Fettuccine with porcini mushrooms and pecorino'),
+    archiveCaption: l('Gino e Pina, foto d’archivio', 'Gino e Pina, archive photo'),
+  },
+  booking: {
+    title: l('Prenota un tavolo', 'Book a table'),
+    people: l('Persone', 'Guests'),
+    date: l('Giorno', 'Date'),
+    time: l('Ora', 'Time'),
+    name: l('Nome', 'Name'),
+    namePlaceholder: l('Il tuo nome', 'Your name'),
+    lunch: l('Pranzo', 'Lunch'),
+    dinner: l('Cena', 'Dinner'),
+    submit: l('Invia la richiesta su WhatsApp', 'Send request on WhatsApp'),
+    or: l('oppure chiama lo', 'or call'),
+    closedDay: l('Questo giorno siamo aperti solo a pranzo.', 'On this day we are open for lunch only.'),
+    pickTime: l('Scegli', 'Choose'),
+    help: l(
+      'Si apre WhatsApp con il messaggio già scritto: ti confermiamo noi la prenotazione.',
+      'WhatsApp opens with your message ready: we will confirm your booking.',
+    ),
+    message: l('Buongiorno, vorrei prenotare un tavolo da Gino e Pina.', 'Hello, I would like to book a table at Gino e Pina.'),
+    msgPeople: l('Persone', 'Guests'),
+    msgDate: l('Giorno', 'Date'),
+    msgTime: l('Ora', 'Time'),
+    msgName: l('Nome', 'Name'),
+    errorTime: l('Scegli un orario per continuare.', 'Choose a time to continue.'),
+  },
+  info: {
+    hours: l('Orari', 'Opening hours'),
+    where: l('Dove siamo', 'Where we are'),
+    contacts: l('Contatti', 'Contact'),
+    today: l('oggi', 'today'),
+    closed: l('chiuso', 'closed'),
+    lunchShort: l('pranzo', 'lunch'),
+    dinnerShort: l('cena', 'dinner'),
+    parking: l('Ampio parcheggio per auto e pullman, con ricarica per auto elettriche.', 'Large car and coach park, with an EV charging point.'),
+  },
+  menuPreview: {
+    title: l('Il menu', 'The menu'),
+    lead: l(
+      'Cucina tipica beneventana di terra e di mare, con piatti vegetariani, vegani e senza glutine. Il menu cambia ogni giorno con le stagioni.',
+      'Traditional Benevento food from land and sea, with vegetarian, vegan and gluten-free options. The menu changes daily with the seasons.',
+    ),
+    pizzaNote: l('La pizza si ordina solo a cena.', 'Pizza is served at dinner only.'),
+    dishes: l('piatti', 'dishes'),
+    from: l('da', 'from'),
+  },
+  locale: {
+    title: l('Dal 1940 nel cuore di Benevento', 'In the heart of Benevento since 1940'),
+    body: l(
+      'Gino e Pina è uno dei locali più antichi e conosciuti della città. Oggi lo porta avanti la terza generazione della famiglia Palmieri, con le stesse ricette e le materie prime comprate ogni mattina al mercatino vicino, dai contadini del Sannio.',
+      'Gino e Pina is one of the oldest and best-known places in town. Today the third generation of the Palmieri family runs it, with the same recipes and produce bought every morning from Sannio farmers at the nearby market.',
+    ),
+    strega: l(
+      'Dal 1994 ospitiamo a cena i finalisti del Premio Strega, la sera prima della premiazione a Roma.',
+      'Since 1994 we have hosted the finalists of the Strega Prize for dinner, the night before the award ceremony in Rome.',
+    ),
+    spacesTitle: l('Le sale', 'Our rooms'),
+  },
+  groups: {
+    title: l('Gruppi, eventi e pranzi di lavoro', 'Groups, events and business lunches'),
+    lead: l(
+      'Due sale fino a 180 coperti per comunioni, cresime, compleanni, lauree e cene aziendali. Per gruppi da più di 15 persone prepariamo un menu dedicato a prezzo fisso. Il parcheggio davanti al locale accoglie anche i pullman.',
+      'Two rooms seating up to 180 for christenings, birthdays, graduations and company dinners. For groups of more than 15 we prepare a dedicated fixed-price menu. Our car park also takes coaches.',
+    ),
+    tasting: l('Menu degustazione', 'Tasting menus'),
+    business: l('Business lunch', 'Business lunch'),
+    perPerson: l('a persona', 'per person'),
+    gift: l(
+      'Voucher e gift card regalo: chiedi su WhatsApp o in sala.',
+      'Gift vouchers are available: ask on WhatsApp or in the restaurant.',
+    ),
+  },
+  reviews: {
+    title: l('Cosa dicono di noi', 'What guests say'),
+    reviewsOn: l('recensioni su', 'reviews on'),
+    tripRank: l('n. 7 su 218 ristoranti a Benevento · Travellers’ Choice', 'No. 7 of 218 restaurants in Benevento · Travellers’ Choice'),
+    translatedNote: l('Recensioni originali in italiano, da Google.', 'Original reviews in Italian, from Google.'),
+  },
+  faq: {
+    title: l('Domande frequenti', 'Frequently asked questions'),
+  },
+  location: {
+    title: l('Come arrivare', 'How to get here'),
+    near: l('Vicino a noi', 'Nearby'),
+    mapTitle: l('Mappa: Gino e Pina, Viale dell’Università 2, Benevento', 'Map: Gino e Pina, Viale dell’Università 2, Benevento'),
+  },
+  footer: {
+    rights: l('Tutti i diritti riservati.', 'All rights reserved.'),
+    menuSource: l('Prezzi e piatti dal menu digitale ufficiale.', 'Prices and dishes from the official digital menu.'),
+  },
+  menuPage: {
+    title: l('Il nostro menu', 'Our menu'),
+    search: l('Cerca un piatto o un ingrediente', 'Search a dish or ingredient'),
+    searchLabel: l('Cerca nel menu', 'Search the menu'),
+    results: l('risultati', 'results'),
+    noResults: l('Nessun piatto trovato. Prova con un’altra parola o chiedi in sala.', 'No dishes found. Try another word or ask our staff.'),
+    clear: l('Cancella', 'Clear'),
+    allergenFilter: l('Escludi allergeni', 'Exclude allergens'),
+    allergenFilterHelp: l(
+      'Nasconde i piatti che contengono gli allergeni scelti. Per sicurezza chiedi sempre conferma al personale.',
+      'Hides dishes containing the selected allergens. Always check with our staff to be safe.',
+    ),
+    resetFilters: l('Mostra tutti i piatti', 'Show all dishes'),
+    seasonal: l('Stagionale, non sempre disponibile', 'Seasonal, not always available'),
+    askPrice: l('Prezzo in sala', 'Ask for price'),
+    allergens: l('Allergeni', 'Allergens'),
+    legendTitle: l('Legenda allergeni', 'Allergen key'),
+    legendNote: l('Reg. UE 1169/2011. Un nostro responsabile è a disposizione per ogni informazione.', 'EU Reg. 1169/2011. A member of staff can give you full details.'),
+    setMenus: l('Menu a prezzo fisso', 'Set menus'),
+    categories: l('Categorie del menu', 'Menu categories'),
+    bookCta: l('Hai scelto? Prenota il tavolo', 'Ready? Book your table'),
+  },
+  notFound: {
+    title: l('Pagina non trovata', 'Page not found'),
+    body: l('La pagina che cerchi non c’è. Torna alla home o guarda il menu.', 'This page does not exist. Go back home or see the menu.'),
+  },
+  lang: {
+    label: l('Lingua', 'Language'),
+    switchTo: l('Switch to English', 'Passa all’italiano'),
+  },
+}

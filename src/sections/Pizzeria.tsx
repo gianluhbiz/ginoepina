@@ -41,7 +41,7 @@ export default function Pizzeria() {
 
           {/* colonna testi */}
           <div>
-            <SectionLabel index="03" className="mb-8 text-crust">Pizzeria · forno a legna</SectionLabel>
+            <SectionLabel className="mb-8 text-crust">Pizzeria · forno a legna</SectionLabel>
             <RevealText
               as="h2"
               text="La vera pizza napoletana, la sera, nel forno a legna."

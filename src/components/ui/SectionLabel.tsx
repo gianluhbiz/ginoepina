@@ -2,8 +2,8 @@ import { motion } from 'framer-motion'
 import { ease } from '../../lib/motion'
 import { cn } from '../../lib/cn'
 
-/** Etichetta editoriale: (03) ——— Cucina sannita */
-export default function SectionLabel({ index, children, className }: { index: string; children: string; className?: string }) {
+/** Etichetta editoriale: ——— Cucina sannita */
+export default function SectionLabel({ children, className }: { children: string; className?: string }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -11,7 +11,6 @@ export default function SectionLabel({ index, children, className }: { index: st
       viewport={{ once: true }}
       className={cn('flex items-center gap-4 text-xs font-medium uppercase tracking-[0.25em]', className)}
     >
-      <span className="font-display text-sm italic normal-case tracking-normal">({index})</span>
       <motion.span
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}

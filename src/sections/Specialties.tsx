@@ -34,7 +34,7 @@ export default function Specialties() {
       <div className="mx-auto max-w-[1600px]">
         <div className="mb-14 grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <SectionLabel index="04" className="mb-8 text-tomato">Il menu tipico sannita</SectionLabel>
+            <SectionLabel className="mb-8 text-tomato">Il menu tipico sannita</SectionLabel>
             <RevealText text="Ogni piatto racconta le nostre terre." className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-7xl lg:text-8xl" />
           </div>
           <p className="max-w-md text-lg leading-relaxed text-ink/70 lg:col-span-5 lg:justify-self-end">

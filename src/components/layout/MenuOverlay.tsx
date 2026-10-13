@@ -1,21 +1,57 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { useEffect, useState, type RefObject } from 'react'
 import { navLinks } from '../../data/navigation'
 import { site } from '../../data/site'
 import { useLockBody } from '../../hooks/useLockBody'
-import { ease, easeInOut } from '../../lib/motion'
+import { ease } from '../../lib/motion'
 import { cn } from '../../lib/cn'
 
-export default function MenuOverlay({ onClose }: { onClose: () => void }) {
+/** Raggio del bottone menu (size-12): il cerchio nasce dal bottone, non dal nulla. */
+const START_RADIUS = 24
+
+/** Centro del bottone e raggio che copre esattamente l'angolo più lontano dello schermo. */
+function measure(anchor: HTMLElement | null) {
+  const w = window.innerWidth
+  const h = window.innerHeight
+  const rect = anchor?.getBoundingClientRect()
+  const x = rect ? rect.left + rect.width / 2 : w - 40
+  const y = rect ? rect.top + rect.height / 2 : 40
+  return { x, y, r: Math.ceil(Math.hypot(Math.max(x, w - x), Math.max(y, h - y))) }
+}
+
+export default function MenuOverlay({ onClose, anchor }: { onClose: () => void; anchor: RefObject<HTMLElement | null> }) {
   const [hover, setHover] = useState(0)
+  const [origin, setOrigin] = useState(() => measure(anchor.current))
+  const reduce = useReducedMotion()
   useLockBody(true)
+
+  useEffect(() => {
+    const onResize = () => setOrigin(measure(anchor.current))
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    window.addEventListener('resize', onResize)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [anchor, onClose])
+
+  const circle = (r: number) => `circle(${r}px at ${origin.x}px ${origin.y}px)`
 
   return (
     <motion.nav
       className="fixed inset-0 z-40 overflow-y-auto bg-ink text-paper"
-      initial={{ clipPath: 'circle(0% at 96% 5%)' }}
-      animate={{ clipPath: 'circle(150% at 96% 5%)', transition: { duration: 1, ease: easeInOut } }}
-      exit={{ clipPath: 'circle(0% at 96% 5%)', transition: { duration: 0.8, ease: easeInOut, delay: 0.15 } }}
+      initial={reduce ? { opacity: 0 } : { clipPath: circle(START_RADIUS) }}
+      animate={
+        reduce
+          ? { opacity: 1, transition: { duration: 0.2 } }
+          : { clipPath: circle(origin.r), transition: { duration: 0.6, ease } }
+      }
+      exit={
+        reduce
+          ? { opacity: 0, transition: { duration: 0.15 } }
+          : { clipPath: circle(START_RADIUS), transition: { duration: 0.4, ease } }
+      }
     >
       <div className="pointer-events-none absolute inset-0 bg-[url(/noise.svg)] opacity-20 mix-blend-overlay" />
       <div className="mx-auto grid min-h-full max-w-[1600px] gap-10 px-6 pb-10 pt-32 md:px-10 lg:grid-cols-[1.3fr_1fr]">
@@ -26,16 +62,21 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
                 href={l.href}
                 onClick={onClose}
                 onMouseEnter={() => setHover(i)}
-                initial={{ y: '100%' }}
-                animate={{ y: 0, transition: { delay: 0.35 + i * 0.06, duration: 0.9, ease } }}
-                exit={{ y: '100%', transition: { duration: 0.4, ease } }}
+                initial={reduce ? { opacity: 0 } : { transform: 'translateY(100%)' }}
+                animate={
+                  reduce
+                    ? { opacity: 1, transition: { duration: 0.2 } }
+                    : { transform: 'translateY(0%)', transition: { delay: 0.12 + i * 0.04, duration: 0.7, ease } }
+                }
+                exit={{ opacity: 0, transition: { duration: 0.15 } }}
                 className={cn(
-                  'group flex items-baseline gap-5 py-2 font-display text-[11vw] font-light leading-[1.05] tracking-tight transition-all duration-500 sm:text-6xl lg:text-7xl',
+                  'group block py-2 font-display text-[11vw] font-light leading-[1.05] tracking-tight transition-colors duration-300 sm:text-6xl lg:text-7xl',
                   hover === i ? 'text-paper' : 'text-paper/35',
                 )}
               >
-                <span className="font-sans text-xs tracking-widest text-tomato">0{i + 1}</span>
-                <span className="transition-transform duration-500 group-hover:translate-x-3 group-hover:italic">{l.label}</span>
+                <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:translate-x-3 [@media(hover:hover)]:group-hover:italic">
+                  {l.label}
+                </span>
               </motion.a>
             </li>
           ))}
@@ -49,8 +90,8 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
                 src={navLinks[hover].image}
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover"
-                initial={{ clipPath: 'inset(0 0 100% 0)', scale: 1.2 }}
-                animate={{ clipPath: 'inset(0 0 0% 0)', scale: 1 }}
+                initial={{ clipPath: 'inset(0 0 100% 0)', transform: 'scale(1.2)' }}
+                animate={{ clipPath: 'inset(0 0 0% 0)', transform: 'scale(1)' }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, ease }}
               />
@@ -58,9 +99,9 @@ export default function MenuOverlay({ onClose }: { onClose: () => void }) {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0, transition: { delay: 0.7 } }}
-            exit={{ opacity: 0 }}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(16px)' }}
+            animate={{ opacity: 1, transform: 'translateY(0px)', transition: { delay: 0.35, duration: 0.6, ease } }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
             className="grid gap-6 text-sm sm:grid-cols-2"
           >
             <div>

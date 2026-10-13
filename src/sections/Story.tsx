@@ -35,7 +35,7 @@ export default function Story() {
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
         <div className="mx-auto flex w-full max-w-[1600px] items-end justify-between px-6 pt-28 md:px-10">
           <div>
-            <SectionLabel index="02" className="mb-4 text-tomato">La storia</SectionLabel>
+            <SectionLabel className="mb-4 text-tomato">La storia</SectionLabel>
             <RevealText text="Quasi un secolo a tavola" className="font-display text-4xl font-light tracking-tight md:text-6xl" />
           </div>
           <div className="mb-3 hidden w-48 md:block">

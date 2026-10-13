@@ -27,7 +27,7 @@ export default function Services() {
       <div className="mx-auto max-w-[1600px]">
         <div className="mb-16 grid gap-8 lg:grid-cols-2 lg:items-end">
           <div>
-            <SectionLabel index="06" className="mb-8 text-tomato">Servizi e promo</SectionLabel>
+            <SectionLabel className="mb-8 text-tomato">Servizi e promo</SectionLabel>
             <RevealText text="Far star bene a tavola. Anche fuori dal ristorante." className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-7xl" />
           </div>
           <div className="flex flex-wrap gap-2 lg:justify-end">

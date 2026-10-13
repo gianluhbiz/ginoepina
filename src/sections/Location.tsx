@@ -18,7 +18,7 @@ export default function Location() {
   return (
     <section id="contatti" className="relative bg-paper px-4 py-28 text-ink md:px-10 md:py-40">
       <div className="mx-auto max-w-[1600px]">
-        <SectionLabel index="09" className="mb-8 text-tomato">Dove siamo</SectionLabel>
+        <SectionLabel className="mb-8 text-tomato">Dove siamo</SectionLabel>
         <div className="mb-16 grid gap-8 lg:grid-cols-12 lg:items-end">
           <RevealText text="A 200 metri dal Teatro Romano." className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-8xl lg:col-span-8" />
           <p className="max-w-sm text-ink/65 lg:col-span-4 lg:justify-self-end">

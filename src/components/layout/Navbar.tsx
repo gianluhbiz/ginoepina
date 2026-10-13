@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { site } from '../../data/site'
 import { useOpenStatus } from '../../hooks/useOpenStatus'
 import { ease } from '../../lib/motion'
@@ -12,6 +12,8 @@ export default function Navbar({ ready }: { ready: boolean }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const status = useOpenStatus()
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const close = useCallback(() => setOpen(false), [])
 
   useMotionValueEvent(scrollY, 'change', (y) => {
     const prev = scrollY.getPrevious() ?? 0
@@ -29,9 +31,10 @@ export default function Navbar({ ready }: { ready: boolean }) {
       >
         <div
           className={cn(
-            'mx-auto flex max-w-[1600px] items-center justify-between rounded-full py-2 pl-5 pr-2 transition-all duration-500',
+            'mx-auto flex max-w-[1600px] items-center justify-between rounded-full py-2 pl-5 pr-2 transition-[background-color,box-shadow,color] duration-300',
             scrolled && !open ? 'bg-paper/75 shadow-[0_8px_30px_-12px_rgba(23,18,14,0.35)] backdrop-blur-xl' : 'bg-transparent',
-            open ? 'text-paper' : 'text-ink',
+            // In apertura il testo schiarisce quando il cerchio scuro è già arrivato al logo.
+            open ? 'text-paper delay-150' : 'text-ink',
           )}
         >
           <a href="#top" className="group flex items-baseline gap-2" onClick={() => setOpen(false)}>
@@ -60,6 +63,7 @@ export default function Navbar({ ready }: { ready: boolean }) {
               <i className="ri-phone-line" /> Prenota
             </a>
             <button
+              ref={toggleRef}
               onClick={() => setOpen((o) => !o)}
               aria-label={open ? 'Chiudi menu' : 'Apri menu'}
               aria-expanded={open}
@@ -70,20 +74,22 @@ export default function Navbar({ ready }: { ready: boolean }) {
             >
               <motion.span
                 className="absolute h-0.5 w-5 rounded bg-current"
-                animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -4 }}
-                transition={{ duration: 0.4, ease }}
+                animate={{ transform: open ? 'translateY(0px) rotate(45deg)' : 'translateY(-4px) rotate(0deg)' }}
+                transition={{ duration: 0.3, ease }}
               />
               <motion.span
                 className="absolute h-0.5 w-5 rounded bg-current"
-                animate={open ? { rotate: -45, y: 0, width: 20 } : { rotate: 0, y: 4, width: 12 }}
-                transition={{ duration: 0.4, ease }}
+                animate={{
+                  transform: open ? 'translateY(0px) rotate(-45deg) scaleX(1)' : 'translateY(4px) rotate(0deg) scaleX(0.6)',
+                }}
+                transition={{ duration: 0.3, ease }}
               />
             </button>
           </div>
         </div>
       </motion.header>
 
-      <AnimatePresence>{open && <MenuOverlay onClose={() => setOpen(false)} />}</AnimatePresence>
+      <AnimatePresence>{open && <MenuOverlay onClose={close} anchor={toggleRef} />}</AnimatePresence>
     </>
   )
 }

@@ -14,7 +14,7 @@ export default function Reviews() {
       <div className="mx-auto max-w-[1600px] px-4 md:px-10">
         <div className="mb-16 grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
-            <SectionLabel index="08" className="mb-8 text-tomato">La nostra cucina raccontata dai clienti</SectionLabel>
+            <SectionLabel className="mb-8 text-tomato">La nostra cucina raccontata dai clienti</SectionLabel>
             <RevealText text="Detto da chi si è seduto a tavola." className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-7xl" />
           </div>
 

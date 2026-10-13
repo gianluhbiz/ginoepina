@@ -15,7 +15,7 @@ export default function Spaces() {
       <div className="mx-auto max-w-[1600px]">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-8">
           <div>
-            <SectionLabel index="05" className="mb-8 text-tomato">Gli ambienti</SectionLabel>
+            <SectionLabel className="mb-8 text-tomato">Gli ambienti</SectionLabel>
             <RevealText text="Calda, accogliente, di legno e profumi." className="max-w-3xl font-display text-5xl font-light leading-[0.95] tracking-tight md:text-7xl" />
           </div>
           <p className="max-w-xs text-ink/60">Quattro spazi per ogni occasione, dal pranzo veloce alla cena sotto le stelle.</p>

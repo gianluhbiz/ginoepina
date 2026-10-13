@@ -76,7 +76,7 @@ export default function GiftCards() {
       <div className="relative mx-auto max-w-[1600px]">
         <div className="mb-20 grid gap-8 lg:grid-cols-2 lg:items-end">
           <div>
-            <SectionLabel index="07" className="mb-8 text-crust">Gift card regalo</SectionLabel>
+            <SectionLabel className="mb-8 text-crust">Gift card regalo</SectionLabel>
             <RevealText text="Regala una cena per due." className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-8xl" />
           </div>
           <div className="lg:justify-self-end">

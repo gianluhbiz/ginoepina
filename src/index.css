@@ -14,3 +14,10 @@
   --color-gold: #c99a45;
   --color-crust: #e0a96d;
 }
+
+@layer base {
+  /* Riserva lo spazio della scrollbar: aprendo il menu (body bloccato) la pagina non scatta di lato. */
+  html {
+    scrollbar-gutter: stable;
+  }
+}

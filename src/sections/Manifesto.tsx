@@ -26,7 +26,7 @@ export default function Manifesto() {
     <section className="relative overflow-hidden bg-paper px-6 py-28 text-ink md:px-10 md:py-40">
       <div className="mx-auto grid max-w-[1600px] gap-16 lg:grid-cols-12">
         <div className="lg:col-span-8">
-          <SectionLabel index="01" className="mb-10 text-tomato">Il nostro mestiere è antico</SectionLabel>
+          <SectionLabel className="mb-10 text-tomato">Il nostro mestiere è antico</SectionLabel>
           <p ref={ref} className="font-display text-3xl font-light leading-[1.15] tracking-tight md:text-5xl lg:text-6xl">
             {words.map((w, i) => (
               <ScrollWord key={i} word={w} progress={scrollYProgress} range={[i / words.length, (i + 1) / words.length]} />
